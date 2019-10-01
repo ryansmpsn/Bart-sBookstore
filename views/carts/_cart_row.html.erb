@@ -1,0 +1,46 @@
+
+
+<section class="content-section-a">
+
+ <div class="container">
+        
+
+  <div class="row">
+      <div class="col-lg-5 mr-auto">
+        <%= image_tag book.cover.url(:medium) %>
+      </div>
+    <div class="col-lg-5 ml-auto">
+       <hr class="section-heading-spacer">
+            <div class="clearfix"></div>
+      <p>Title: <%= book.title %><br/><br/>
+      <%=pluralize(book.categories.size, 'Category') + ": " + book.categories.collect(&:name).join(", ") %><br/><br/>
+      <%=pluralize(book.authors.size, 'Author') + ": " + book.authors.pluck(:first_Name, :last_Name).join(" ") %><br/><br/>
+      <%=pluralize(book.publishers.size, 'Publisher') + ": " + book.publishers.collect(&:name).join(", ") %><br/><br/>
+      Pages: <%= book.pages %><br/><br/>
+      Price: <span style="color: green"><%= number_to_currency book.price %><br/><br/>
+     </p>  
+
+    </div>
+    <div class="col-xs-4">
+      <%= form_for order_item, remote: true do |f| %>
+        <h4 class="text-right">Book Price: <span style="color: green"><%= number_to_currency order_item.unit_price %></span></h4>
+        <div class="row">
+          <div class="col-xs-4">
+            <%= f.number_field :bookQuantity, value: order_item.bookQuantity.to_i, class: "form-control", min: 1 %>
+            <%= f.hidden_field :book_id, value: book.id %>
+          </div>
+          <div class="col-xs-8 text-right">
+            <div class="btn-group">
+              <%= f.submit "Update Quantity", class: "btn btn-primary" %>
+              <%= link_to "Delete", order_item, { data: { confirm: "Are you sure you wish to delete the book '#{order_item.book.title}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
+            </div>
+          </div>
+        </div>
+        <h4 class="text-right">Total Price: <span style="color: green"><%= number_to_currency order_item.total_price %></span></h4>
+      <% end %>
+    </div>
+
+  </div>
+
+  </div>
+</section>

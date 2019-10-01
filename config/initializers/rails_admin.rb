@@ -1,14 +1,4 @@
 RailsAdmin.config do |config|
-config.parent_controller = "::ApplicationController"
-
-  config.authorize_with do |controller|
-    unless current_user && current_user.admin?
-      redirect_to(
-        main_app.root_path,
-        alert: "You are not permitted to view this page"
-      )
-    end
-  end
 
   ### Popular gems integration
 
@@ -32,7 +22,11 @@ config.parent_controller = "::ApplicationController"
   ## == Gravatar integration ==
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
-
+config.authorize_with do |controller|
+  if current_user.nil? || !current_user.admin?
+    redirect_to  main_app.root_path
+  end
+end
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
@@ -47,13 +41,5 @@ config.parent_controller = "::ApplicationController"
     ## With an audit adapter, you can add:
     # history_index
     # history_show
-  end
-
-  config.model "User" do
-    edit do
-      field :admin
-      field :email
-      field :password
-    end
   end
 end

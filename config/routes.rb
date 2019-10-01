@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  root to: 'pages#home'
-
+  devise_for :users
+  resources :books
+  resource :cart
+  resources :order_items, only: [:create, :update, :destroy]
   resources :invoices
   resources :orders
-  resources :customers
-  resources :employees
-  resources :books
-  get 'pages/home'
+  mount RailsAdmin::Engine => '/admin', as: :rails_admin
 
+  root 'home#index'
   get 'pages/about'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

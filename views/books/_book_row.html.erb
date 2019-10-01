@@ -1,0 +1,23 @@
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <div class="card-img-top">
+              <%= image_tag book.cover.url(:medium) %>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= book.title %>
+              </h5>
+              <p class="card-text">
+              <%= book.stock %> copies in stock<br/>
+              <%= book.authors.pluck(:first_name, :last_name).join(", ") %><br>
+              <%= form_for order_item, remote: true do |f| %>
+                 Book Price: <span style="color: green"><%= number_to_currency book.price %></span><br/>
+                <%= f.number_field :bookQuantity, value: 1, class: "form-control", min: 1 %><br/>
+                <%= f.hidden_field :book_id, value: book.id %>
+                <%= link_to 'Book Info', book_path(book), class:"btn btn-primary"%> <br/><br/>
+                <%= f.submit "Add to Cart", class: "btn btn-primary" %>
+              <% end %>
+              </p>
+            </div>
+          </div>
+        </div>

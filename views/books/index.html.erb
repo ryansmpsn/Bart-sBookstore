@@ -1,0 +1,10 @@
+ <div class="container">
+    <h3 class="my-4">Books for sale</h3>
+        <%= will_paginate @book_paginator %>
+    	<div class="row">
+    	<% @books.each do |book| %>
+      		<%= render "book_row", book: book, order_item: @order_item %>
+    	<% end %>
+    	</div>
+    	<%= will_paginate @book_paginator %>
+</div>
