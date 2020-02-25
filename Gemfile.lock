@@ -84,6 +84,7 @@ GEM
       warden (~> 1.2.3)
     erubi (1.7.0)
     execjs (2.7.0)
+    ffi (1.9.18)
     ffi (1.9.18-x86-mingw32)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
@@ -126,14 +127,17 @@ GEM
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
     mini_mime (1.0.0)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     minitest (5.10.3)
     multi_json (1.12.2)
+    mysql2 (0.4.10)
     mysql2 (0.4.10-x86-mingw32)
     nested_form (0.3.2)
     nio4r (2.1.0)
-    nokogiri (1.8.1-x86-mingw32)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.8)
+      mini_portile2 (~> 2.4.0)
+    nokogiri (1.10.8-x86-mingw32)
+      mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     paperclip (5.0.0)
       activemodel (>= 4.2.0)
@@ -246,6 +250,7 @@ GEM
       rake (>= 0.8.7)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
