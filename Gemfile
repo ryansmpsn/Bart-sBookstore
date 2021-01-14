@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 gem "paperclip", "~> 5.0.0"
 gem 'will_paginate', '~> 3.1.0'
-gem 'rails_admin', '~>1.2'
+gem 'rails_admin', '~>1.4'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 gem 'yaml_db'
